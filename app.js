@@ -94,3 +94,23 @@ const renderRecipes = (recipesArray) => {
 
 // Initialize App
 renderRecipes(recipes);
+const filterByDifficulty = (recipes, level) => {
+  return recipes.filter(r => r.difficulty === level);
+};
+
+const filterByQuick = (recipes) => {
+  return recipes.filter(r => r.time < 30);
+};
+
+const applyFilter = (recipes, filterType) => {
+  switch (filterType) {
+    case "easy":
+    case "medium":
+    case "hard":
+      return filterByDifficulty(recipes, filterType);
+    case "quick":
+      return filterByQuick(recipes);
+    default:
+      return recipes;
+  }
+};
